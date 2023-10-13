@@ -8,6 +8,7 @@ let offsetX, offsetY;
 function createBubble() {
     let bubble = document.createElement('div');
     bubble.className = 'bubble';
+    bubble.id = "bubble";
     document.body.appendChild(bubble);
     bubble.contentEditable = 'true';
   
@@ -22,7 +23,7 @@ function createBubble() {
     const hue = Math.floor(Math.random() * 360);
     const saturation = Math.floor(Math.random() * 100);
     const lightness = 75; // keep it pastel
-    bubble.style.backgroundColor = `hsl(${hue}, ${saturation}%,     ${lightness}%)`;
+    bubble.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     
     // Append the new bubble to the container
     container.appendChild(bubble);
@@ -62,7 +63,7 @@ function handleInput(e) {
 }
 
 function handleMousedown(e) {
-  let bubble = e.target;
+  let bubble = document.querySelector('#bubble');
   offsetX = bubble.offsetLeft - e.clientX;
   offsetY = bubble.offsetTop - e.clientY;
 
@@ -71,7 +72,7 @@ function handleMousedown(e) {
 }
 
 function handleMousemove(e) {
-  let bubble = e.target;
+  let bubble = document.querySelector('#bubble');
   bubble.style.left = e.clientX + offsetX + 'px';
   bubble.style.top = e.clientY + offsetY + 'px';
 }
@@ -80,4 +81,3 @@ function handleMouseup() {
   document.removeEventListener('mousemove', handleMousemove);
   document.removeEventListener('mouseup', handleMouseup);
 }
-
